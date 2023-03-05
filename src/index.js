@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 dotenv.config()
 
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect("mongodb+srv://arpit:Ak8290063171@cluster0.b0cqj.mongodb.net/Arpit-db", {
   useNewUrlParser: true
 })
   .then(() => console.log("MongoDb is connected"))
