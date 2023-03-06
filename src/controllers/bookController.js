@@ -198,7 +198,7 @@ const updatedBook = async function (req, res) {
         { title: title, excerpt: excerpt, releasedAt: releasedAt, ISBN: ISBN },
         { new: true }
       );
-      res.status(200).send({ status: true, data: updatedBook });
+      return res.status(200).send({ status: true, data: updatedBook });
     } else {
       return res.status(404).send({
         status: false,
@@ -206,25 +206,14 @@ const updatedBook = async function (req, res) {
       });
     }
   } catch (error) {
-    res.status(500).send({ status: false, message: error.message });
+   return  res.status(500).send({ status: false, message: error.message });
   }
 };
 
-//============================================[Delete Book API By BookId]========================================================================
 
 const deleteBook = async function (req, res) {
   try {
     let bookId = req.params.bookId;
-    let book = await Book.findById(bookId);
-    if (!book) {
-      return res
-        .status(404)
-        .send({ status: "false", message: "No such book exists " });
-    }
-    if (!bookId)
-      return res
-        .status(400)
-        .send({ status: false, message: "BookId is required" });
 
     let data = await Book.findById(bookId);
     if (!data)
